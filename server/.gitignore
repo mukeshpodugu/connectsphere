@@ -1,0 +1,12 @@
+# Dependency folders
+node_modules/
+
+# Compiled files
+dist/
+
+# Local configuration files
+.env
+
+# Local upload attachments
+public/uploads/*
+!public/uploads/.gitkeep
