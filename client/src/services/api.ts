@@ -3,7 +3,7 @@ import { store } from '../store';
 import { setToken, logoutSuccess } from '../store/slices/authSlice';
 
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: import.meta.env.VITE_API_URL ? `${import.meta.env.VITE_API_URL}/api` : '/api',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -59,8 +59,10 @@ api.interceptors.response.use(
       isRefreshing = true;
 
       try {
-        // Attempt to rotate refresh token
-        const res = await axios.post('/api/auth/refresh-token', {}, { withCredentials: true });
+        const refreshUrl = import.meta.env.VITE_API_URL 
+          ? `${import.meta.env.VITE_API_URL}/api/auth/refresh-token` 
+          : '/api/auth/refresh-token';
+        const res = await axios.post(refreshUrl, {}, { withCredentials: true });
         const { accessToken } = res.data;
 
         store.dispatch(setToken(accessToken));

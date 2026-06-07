@@ -33,7 +33,8 @@ export const useSocket = () => {
 
     if (!socketInstance) {
       // Connect to backend node server
-      socketInstance = io('/', {
+      const socketUrl = import.meta.env.VITE_API_URL || '/';
+      socketInstance = io(socketUrl, {
         auth: { token },
         transports: ['websocket'],
       });
