@@ -26,9 +26,16 @@ dotenv.config();
 
 const app = express();
 const server = http.createServer(app);
+
+// Sanitize CLIENT_URL to prevent trailing slash CORS mismatches
+let clientUrl = process.env.CLIENT_URL || 'http://localhost:3000';
+if (clientUrl.endsWith('/')) {
+  clientUrl = clientUrl.slice(0, -1);
+}
+
 const io = new Server(server, {
   cors: {
-    origin: process.env.CLIENT_URL || 'http://localhost:3000',
+    origin: clientUrl,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
   }
@@ -45,7 +52,7 @@ app.use(helmet({
   crossOriginResourcePolicy: { policy: "cross-origin" }
 }));
 app.use(cors({
-  origin: process.env.CLIENT_URL || 'http://localhost:3000',
+  origin: clientUrl,
   credentials: true
 }));
 app.use(express.json({ limit: '10mb' }));
