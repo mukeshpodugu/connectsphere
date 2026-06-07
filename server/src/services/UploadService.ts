@@ -11,17 +11,17 @@ if (!fs.existsSync(uploadDir)) {
 
 // Multer Disk Storage Configuration
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
+  destination: (req: any, file: any, cb: any) => {
     cb(null, uploadDir);
   },
-  filename: (req, file, cb) => {
+  filename: (req: any, file: any, cb: any) => {
     const uniqueName = `${uuidv4()}${path.extname(file.originalname)}`;
     cb(null, uniqueName);
   }
 });
 
 // File validation limits
-const fileFilter = (req: any, file: Express.Multer.File, cb: multer.FileFilterCallback) => {
+const fileFilter = (req: any, file: any, cb: any) => {
   const allowedExtensions = [
     '.png', '.jpg', '.jpeg', '.gif', // Images
     '.mp4', '.mov', '.avi', '.mkv', // Videos
