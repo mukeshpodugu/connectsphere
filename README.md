@@ -13,6 +13,13 @@ ConnectSphere is a robust, full-stack real-time communication platform designed 
 
 ---
 
+## 🌐 Live Production Deployment
+
+* **Frontend Web Client:** [https://connectsphere-nine.vercel.app](https://connectsphere-nine.vercel.app)
+* **Backend API Server:** [https://connectsphere-api-4sbr.onrender.com](https://connectsphere-api-4sbr.onrender.com)
+
+---
+
 ## 🚀 Key Features
 
 ### 1. Authentication & Security
